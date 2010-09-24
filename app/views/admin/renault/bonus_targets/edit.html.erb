@@ -1,0 +1,12 @@
+<h1>Editing bonus_target</h1>
+
+<% form_for(@bonus_target) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.submit 'Update' %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @bonus_target %> |
+<%= link_to 'Back', bonus_targets_path %>

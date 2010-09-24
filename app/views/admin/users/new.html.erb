@@ -1,0 +1,134 @@
+<div class=" line  Bspace  miniHspace ">
+   <div class=" unit size1on1 lastunit ">
+      <div class=" block  noresize ">
+         <div class=" blockInside ">
+            <div class="body">
+
+
+
+               <% form_for [ @user ]  do |f| %>
+                  <%= f.error_messages %>
+                  <div class="block Bspace">
+                     <div class="blockInside">
+                        <div class="body">
+
+                           <fieldset class="paddingSm whiteSpacer blockFilled">
+                              <ul>
+                                 <li class="labelTop size2on3 fline">
+                                    <label for="">
+                                       <%= f.label :username %>
+                                    </label>
+                                    <span class="fld text">
+                                       <%= f.text_field :username %>
+                                    </span>
+                                 </li>
+                                 <li class="labelTop size2on3 fline">
+                                    <label for="">
+                                       <%= f.label :name %>
+                                    </label>
+                                    <span class="fld text">
+                                       <%= f.text_field :name %>
+                                    </span>
+                                 </li>
+                                 <li class="labelTop size2on3 fline">
+                                    <label for="">
+                                       <%= f.label :surname %>
+                                    </label>
+                                    <span class="fld text">
+                                       <%= f.text_field :surname %>
+                                    </span>
+                                 </li>
+                                 <li class="labelTop size2on3 fline">
+                                    <label for="">
+                                       <%= f.label :email %>
+                                    </label>
+                                    <span class="fld text">
+                                       <%= f.text_field :email %>
+                                    </span>
+                                 </li>
+                                 <li class="labelTop size2on3 fline">
+                                    <label for="">
+                                       <%= f.label :tel %>
+                                    </label>
+                                    <span class="fld text">
+                                       <%= f.text_field :tel %>
+                                    </span>
+                                 </li>
+                                 <li class="labelTop size2on3 fline">
+                                    <label for="">
+                                       <%= f.label :password %>
+                                    </label>
+                                    <span class="fld text">
+                                       <%= f.password_field :password %>
+                                    </span>
+                                 </li>
+                                 <li class="labelTop size2on3 fline">
+                                    <label for="">
+                                       <%= f.label :password_confirmation %>
+                                    </label>
+                                    <span class="fld text">
+                                       <%= f.password_field :password_confirmation %>
+                                    </span>
+                                 </li>
+                              </ul>
+                           </fieldset>
+
+                           <fieldset class="paddingSm whiteSpacer blockFilled">
+                              <ul>
+                                 <li class="labelTop fline">
+                                    <label>
+                                       Role
+                                    </label>
+                                    <span class="fld input50">
+                                       <%= f.select :role_id, @roles.map {|r| [r.name , r.id ]}, :id => 'select_role', :selected => @user.role_id %>
+                                    </span>
+                                 </li>
+                                 <li class="labelTop fline">
+                                    <label>
+                                       Country
+                                    </label>
+                                    <span class="fld input50">
+                                       <%= f.select :country_id, @countries.map {|c| [c.name , c.id ]}, options ={:prompt => "-Select a country-"},  :id => 'select_country',:selected => @user.country_id %>
+                                    </span>
+                                 </li>
+                                 <li id="select_zone" class="labelTop fline">
+
+                                 </li>
+                                 <li id="select_dealer" class="labelTop fline">
+
+                                 </li>
+                              </ul>
+                           </fieldset>
+
+
+
+                        </div>
+                     </div>
+
+                  </div>
+
+                  <div class="block Tspace">
+                     <div class="blockInside">
+                        <div class="body txtR">
+                           <button type="submit" class="bouton" name="submit"><strong>Button</strong></button>
+
+                        </div>
+                     </div>
+                  </div>
+
+
+
+               </div></div></div></div></div>
+<% end %>
+
+<%= observe_field "select_country", :url => { :action =>  :get_zones,
+  :controller => :users },
+  :update => "select_zone",
+  :with => "country_id" %>
+
+
+<div id="aside" class="box">
+   <p id="btn-create" class="box">
+      <%= link_to '<span>Back</span>', admin_users_path %>
+   </p>
+</div>

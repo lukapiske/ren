@@ -1,0 +1,42 @@
+<h2>Car park files</h2>
+
+<table class="mytable">
+  <tr>
+    <th>ID</th>
+    <th>Name</th>
+    <th>Size</th>
+    <th>Type</th>
+    <th>Report for</th>
+    <th>Date created</th>
+    <th>Actions</th>
+  </tr>
+
+  <% @car_parks.each do |park| %>
+    <tr class="<%= cycle('', 'bg') %>">
+      <td><%=h park.id %></td>
+      <td><%=h park.excelfiles_file_name %></td>
+      <td><%=h park.excelfiles_file_size %></td>
+      <td><%=h park.excelfiles_content_type %></td>
+      <td><%= park.datum %></td>
+      <td> <%=h park.created_at.strftime('%d %B %Y') %></td>
+      <% if permitted_to? :show %>
+      <td> <%= link_to 'Data', :controller => 'admin/renault/scaffold/carparks', :action => 'index', :object => park %>
+      <% end  %>
+      <% if permitted_to? :destroy %>
+        <%= link_to 'Destroy', [ park ], :confirm => 'Are you sure?', :method => :delete %></td>
+      <% end  %>
+    </tr>
+  <% end %>
+</table>
+
+<br />
+<% if permitted_to? :create %>
+  <div id="aside" class="box">
+    <p id="btn-create" class="box">
+      <%= link_to '<span>New car park file</span>', new_admin_renault_car_park_path %>
+    </p>
+  </div>
+  
+<% end %>
+<br />
+<%= will_paginate @car_sales %>

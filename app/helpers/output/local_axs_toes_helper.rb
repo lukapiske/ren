@@ -1,0 +1,2 @@
+module Output::LocalAxsToesHelper
+end

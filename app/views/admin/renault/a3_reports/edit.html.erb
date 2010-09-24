@@ -1,0 +1,12 @@
+<h1>Editing a3_report</h1>
+
+<% form_for(@a3_report) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.submit 'Update' %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @a3_report %> |
+<%= link_to 'Back', a3_reports_path %>

@@ -1,0 +1,41 @@
+
+<%= image_tag("spinner.white.gif", :id => "ajaxLoader", :class => "invis") %>
+
+<% form_tag({:controller => 'outlets', :action => 'filter'}, {:method => :get, :id => 'listform'}) do %>
+
+   <div>
+
+      <b>country</b>
+
+      <%= select_tag(:filter_country, "<option value='-1'>-all-</option>" + options_from_collection_for_select(@country, :id, :name)) %>
+
+      <b>Dealer ship name</b>
+      <b><% I18n.t('outlet.dealers')  %></b>
+
+      <%= select_tag(:filter_dealer, "<option value='-1'>-all-</option>" + options_from_collection_for_select(@dealers, :dealer_group_id , :dealer_ship_name)) %>
+
+      <b>By name</b>
+
+      <%= text_field_tag :filter, params[:filter] -%>
+
+
+   </div>
+   <br />
+   <div id="outlet_list">
+      <%=  render :partial => 'list', :object => @outlet %>
+   </div>
+
+
+   <%= observe_form '#listform',
+     :frequency => 0.2,
+     :method => :get,
+     :update => '#outlet_list',
+     :before => "$('#ajaxLoader').show()",
+     :complete => "$('#ajaxLoader').hide()",
+     :url => {:controller => 'outlets', :action => 'filter'}
+%>
+<% end %>
+
+
+
+

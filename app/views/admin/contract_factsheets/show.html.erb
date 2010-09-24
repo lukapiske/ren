@@ -1,0 +1,27 @@
+
+<% outlet = @outlet %>
+<%= image_tag("spinner.white.gif", :id => "ajaxLoader", :class => "invis") %>
+
+
+
+<% form_tag({:controller => 'contract_factsheets', :action => 'show'}, {:method => :get, :id => 'listform'}) do %>
+   <%= select_date outlet.date , :prefix => :date_for %>
+
+<% end %>
+
+<div id="ajax_report">
+
+   <%=  render :partial => "show", :object => [ @outlet, @ly_outlet ] %>
+</div>
+
+   <%= observe_form '#listform',
+     :frequency => 0.2,
+     :method => :get,
+     :update => '#ajax_report',
+     :before => "$('#ajaxLoader').show()",
+     :complete => "$('#ajaxLoader').hide()",
+     :url => {:controller => 'contract_factsheets', :action => 'show', :id => outlet.id }
+%>
+
+
+

@@ -1,0 +1,22 @@
+<h2>Invoice</h2>
+
+<fieldset>
+  <legend>Invoice file</legend>
+  <% form_for( [ @excel ] , :html => { :multipart => true }) do |f| %>
+    <table class="nostyle">
+      <tr>
+        <td> <%= f.label :excelfiles, "Excel" %></td>
+        <td><%= f.file_field :excelfiles %></td>
+      </tr>
+      <tr>
+        <td><%= f.submit 'Upload' %></td>
+      </tr>
+    </table>
+  <% end %>
+</fieldset>
+
+  <div id="aside" class="box">
+    <p id="btn-create" class="box">
+      <%= link_to '<span>Back</span>', admin_renault_invoice_excels_path %>
+    </p>
+  </div>

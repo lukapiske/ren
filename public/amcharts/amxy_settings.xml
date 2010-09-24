@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Value between [] brackets, for example [#FFFFFF] shows default value which is used if this parameter is not set -->
+<!-- This means, that if you are happy with this value, you can delete this line at all and reduce file size -->
+<!-- the top left corner has coordinates x = 0, y = 0                                                                -->
+<!-- "!" before x or y position (for example: <x>!20</x>) means that the coordinate will be calculated from the right side or the bottom -->
+<settings> 
+
+    <legend>
+        <enabled>false</enabled>
+    </legend>
+    <depth></depth>
+    <rotate>90</rotate>
+    <bullets>
+        <hover_brightness>20</hover_brightness>                   <!-- [0] (from -255 to 255) the bullet may darken/lighten when the use rolls over it. The intensity may be set here -->
+        <grow_time>2</grow_time>                                  <!-- [0] (Number) the time of animation of the bullets, in seconds. Leave 0 to appear instantly -->
+        <sequenced_grow>true</sequenced_grow>                     <!-- [false] (true / false) whether to animate all bullets at the same time or one after another -->
+        <grow_effect>elastic</grow_effect>                               <!-- [elastic] (elastic, regular, strong) -->
+        <max_size></max_size>                                     <!-- [50] maximum size of a bullet (balloon) The bullet with the highest value will be equal to this size -->
+        <min_size></min_size>                                     <!-- [0] mminimum size of a bullet (balloon) -->
+        <bullet>round</bullet>
+    </bullets>
+  
+</settings>

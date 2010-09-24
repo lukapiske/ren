@@ -1,0 +1,25 @@
+<table>
+  <tr>
+    <th colspan="5">Car sales</th>
+  </tr>
+  <tr>
+    <td>id </td>
+    <td>date</td>
+    <td>acronym </td>
+    <td>model</td>
+    <td>car_num</td>
+  </tr>
+  <% object.csales_data.grouped.each do |csales| %>
+
+    <tr class="<%= cycle('', 'bg')%>" >
+      <td><%=h csales.id %></td>
+      <td><%=h csales.date %></td>
+      <td><%=h csales.acronym %></td>
+      <td><%=h csales.model %></td>
+      <td><b><%=h csales.car_num %></b></td>
+    </tr>
+  <% end  %>
+
+
+</table>
+

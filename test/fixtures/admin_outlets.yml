@@ -1,0 +1,25 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  zone: 1
+  dealer_num: 1
+  dealer_ship_name: MyString
+  outlet_name: MyString
+  address: MyString
+  zip: MyString
+  place: MyString
+  contract_partner: 1
+  main_delivery: 1
+  urgent_track: 1
+
+two:
+  zone: 1
+  dealer_num: 1
+  dealer_ship_name: MyString
+  outlet_name: MyString
+  address: MyString
+  zip: MyString
+  place: MyString
+  contract_partner: 1
+  main_delivery: 1
+  urgent_track: 1

@@ -1,0 +1,77 @@
+
+
+ <% form_for [ @outlet ]  do |f| %>
+  <%= f.error_messages %>
+<table>
+       <tr>
+        <td><%= f.label :zone %></td>
+        <td><%= f.text_field :zone %></td>
+      </tr>
+
+      <tr>
+        <td><%= f.label :dealer_group_id %></td>
+        <td> <%= f.text_field :dealer_group_id %></td>
+      </tr>
+
+      <tr>
+        <td>  <%= f.label :dealer_num %></td>
+        <td>  <%= f.text_field :dealer_num %></td>
+      </tr>
+       <tr>
+        <td>  <%= f.label :dealer_ship_name %></td>
+        <td>  <%= f.text_field :dealer_ship_name %></td>
+      </tr>
+             <tr>
+        <td><%= f.label :outlet_name %></td>
+        <td><%= f.text_field :outlet_name %></td>
+      </tr>
+
+      <tr>
+        <td><%= f.label :address %></td>
+        <td> <%= f.text_field :address %></td>
+      </tr>
+
+      <tr>
+        <td>  <%= f.label :zip %></td>
+        <td>  <%= f.text_field :zip %></td>
+      </tr>
+       <tr>
+        <td>  <%= f.label :place %></td>
+        <td>  <%= f.text_field :place %></td>
+      </tr>
+      <tr>
+        <td><%= f.label :country %></td>
+        <td><%= f.text_field :country %></td>
+      </tr>
+
+      <tr>
+        <td><%= f.label :contract_partner %></td>
+        <td> <%= f.text_field :contract_partner %></td>
+      </tr>
+
+      <tr>
+        <td>  <%= f.label :main_delivery %></td>
+        <td>  <%= f.text_field :main_delivery %></td>
+      </tr>
+      <tr>
+        <td>  <%= f.label :urgent_track %></td>
+        <td>  <%= f.text_field :urgent_track %></td>
+      </tr>
+      <tr>
+         <td colspan="2"> 
+             1 - Sweden, 2- Denmark, 3- Finland, 4 -Norway
+           
+         </td>
+
+      </tr>
+      <tr>
+        <td>  <%= f.label :country_id %></td>
+        <td>  <%= f.text_field :country_id %></td>
+      </tr>
+
+
+      <tr>
+        <td><%= f.submit 'Edit' %></td>
+      </tr>
+    </table>
+  <% end %>

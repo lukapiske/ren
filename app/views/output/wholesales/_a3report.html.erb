@@ -1,0 +1,23 @@
+<table>
+  <tr>
+    <th colspan="5">A3 report</th>
+  </tr>
+  <tr>
+    <td>id</td>
+    <td>contact_total</td>
+    <td>contact_total_ly </td>
+    <td>visit_total </td>
+    <td>visit_total_ly</td>
+  </tr>
+
+  <% object.a3report_data.each do |a3report| %>
+
+    <tr class="<%= cycle('', 'bg')%>" >
+      <td><%=h a3report.id %></td>
+      <td><%=h a3report.contact_total %></td>
+      <td><%=h a3report.contact_total_ly %></td>
+      <td><%=h a3report.visit_total %></td>
+      <td><%=h a3report.visit_total_ly %></td>
+    </tr>
+  <% end  %>
+</table>

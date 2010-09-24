@@ -1,0 +1,80 @@
+<% if is_zonemanager %>
+         
+      <% end %>
+<div class=" line  Bspace  miniHspace ">
+   <div class=" unit size1on1 lastunit ">
+      <div class=" block  noresize ">
+         <div class=" blockInside ">
+            <div class="body">
+
+<%= image_tag("spinner.white.gif", :id => "ajaxLoader", :class => "invis") %>
+
+               <% remote_form_for :cmp_es,
+                 :url => { :controller => 'output/cmp_es', :action => 'ajax_index' },
+                 :html => {  :id => 'axs_to_form' },
+                 :update => "ajax-field",
+                 :method => :get ,
+                 :before => "$('#ajaxLoader').show()",
+                 :complete => "$('#ajaxLoader').hide()"   do |f| %>
+                  <%= f.error_messages %>
+
+                  <div class="block Bspace">
+                     <div class="blockInside">
+                        <div class="body">
+
+                           <fieldset class="paddingSm whiteSpacer blockFilled group">
+                              <h3><%= I18n.t('kpi.axs_to') %> </h3>
+                           </fieldset>
+
+                           <fieldset class="paddingSm whiteSpacer blockFilled">
+                              <% if !is_zonemanager %>
+                              <ul>
+                                 <li class="labelTop fline">
+                                    <label>
+                                       <%= I18n.t('forms.country') %>  : *
+                                    </label>
+                                    <span class="fld input50">
+                                       <%= f.select :country_id, Admin::Country.all.map {|c| [c.name , c.id ]},  :id => 'country_select', :selected => current_user.country_id  %>
+                                    </span>
+                                 </li>
+                              </ul>
+                              <% end %>
+                              <ul id="select_zone">
+                                 <li class="labelTop fline">
+                                    <label>
+                                       <%= I18n.t('forms.zone') %>  : *
+                                    </label>
+                                    <span class="fld input50">
+                                       <%= f.select :zone, Admin::Outlet.zones(current_user.country_id).map {|z| [z.zone , z.zone ]},   :id => 'select_zone_val', :selected => current_user.zone  %>
+                                    </span>
+                                 </li>
+                              </ul>
+                           </fieldset>
+
+
+                        </div>
+                     </div>
+
+                  </div>
+
+                  <div class="block Tspace">
+                     <div class="blockInside">
+                        <div class="body txtR">
+                           <button type="submit" class="bouton" name="submit"><strong>Button</strong></button>
+
+                        </div>
+                     </div>
+                  </div>
+               <% end %>
+
+
+            </div></div></div></div></div>
+
+
+
+<%= observe_field "cmp_es_country_id", :url => { :action =>  :get_zones,
+   :controller => "admin/users" },
+  :update => "select_zone",
+  :before => "$('#ajaxLoader').show()",
+  :complete => "$('#ajaxLoader').hide()",
+  :with => "country_id" %>

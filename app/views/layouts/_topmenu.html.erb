@@ -1,0 +1,15 @@
+   
+
+        <ul id="menu">
+          <li id="<%=  mainmenu('outlets') %>" ><%= link_to '<span>' + I18n.t('menu.outlets') +  '</span>', admin_outlets_path if permitted_to? :manage, :admin_outlets %></li>
+          <li id="<%=  mainmenu('users') %>" ><%= link_to   '<span>' + I18n.t('menu.users') +  '</span>', admin_users_path if permitted_to? :manage, :admin_users  %></li>
+      
+
+          <li id="<%=  mainmenu('invoice_excels') %>"><%= link_to  '<span>' + I18n.t('menu.invoices') +  '</span>', admin_renault_invoice_excels_path if permitted_to? :manage, :admin_renault_invoice_excels %></li>
+          <li id="<%=  mainmenu('bonus_targets') %>" ><%= link_to  '<span>' + I18n.t('menu.bonus_targets') +  '</span>', admin_renault_bonus_targets_path if permitted_to? :manage, :admin_renault_bonus_targets %></li>
+          <li id="<%=  mainmenu('car_sales') %>" ><%= link_to  '<span>' + I18n.t('menu.car_sales') +  '</span>', admin_renault_car_sales_path if permitted_to? :manage, :admin_renault_car_sales %></li>
+          <li id="<%=  mainmenu('car_parks') %>" ><%= link_to  '<span>' + I18n.t('menu.car_parks') +  '</span>', admin_renault_car_parks_path if permitted_to? :manage, :admin_renault_car_parks %></li>
+          <li id="<%=  mainmenu('a3_reports') %>" ><%= link_to  '<span>' + I18n.t('menu.a3_reports') +  '</span>', admin_renault_a3_reports_path if permitted_to? :manage, :admin_renault_a3_reports %></li>
+        </ul>
+
+

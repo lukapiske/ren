@@ -1,0 +1,2 @@
+module Output::TargetAchievementsHelper
+end

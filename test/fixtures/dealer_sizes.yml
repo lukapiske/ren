@@ -1,0 +1,17 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  country_id: 1
+  q1: 1
+  q2: 1
+  q3: 1
+  q4: 1
+  year: 2010-09-08
+
+two:
+  country_id: 1
+  q1: 1
+  q2: 1
+  q3: 1
+  q4: 1
+  year: 2010-09-08

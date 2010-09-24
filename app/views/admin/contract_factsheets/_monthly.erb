@@ -1,0 +1,103 @@
+<% outlet = @ly_outlet %>
+<% @monthly =   outlet.get_monthly_to_follow(outlet.date)   %>
+<table>
+   <tr>
+      <th><%= I18n.t('monthly.month') %></th>
+      <th><%= I18n.t('monthly.retail_to') %></th>
+      <th><%= I18n.t('monthly.d_n_to') %></th>
+      <th><%= I18n.t('monthly.s_purchase') %></th>
+      <th><%= I18n.t('monthly.stock') %></th>
+      <th><%= I18n.t('monthly.urgent') %></th>
+   </tr>
+   <%
+   @retail_tot  = 0
+   @dealer_net_tot  = 0
+   @stock_purc_tot = 0
+%>
+   <% @monthly.each do |obj| %>
+      <%
+      @month      = obj.month
+      @retail     = obj.retail_to
+      @dealer_net = obj.dealer_net_to
+      @stock_purc = outlet.stock_purchase(obj)
+      @stock      = outlet.stock(@stock_purc, @dealer_net )
+      @urgent     = outlet.urgent( @stock )
+   %>
+      <tr class="<%= cycle('', 'bg') %>">
+         <td><%= @month %></td>
+         <td><%= number_to_currency(@retail, :unit => "&euro;", :format => "%n %u")  %></td>
+         <td><%= number_to_currency(@dealer_net, :unit => "&euro;", :format => "%n %u")  %></td>
+         <td><%= number_to_currency(@stock_purc, :unit => "&euro;", :format => "%n %u")  %></td>
+         <td><%= number_to_percentage(@stock, :precision => 2)  %></td>
+         <td><%= number_to_percentage(@urgent, :precision => 2) %></td>
+      </tr>
+      <%
+
+      @retail_tot      =    @retail_tot + @retail.to_i
+      @dealer_net_tot  =    @dealer_net_tot + @dealer_net.to_i
+      @stock_purc_tot  =    @stock_purc_tot + @stock_purc.to_i
+      @stock_tot      = outlet.stock(@stock_purc_tot, @dealer_net_tot )
+      @urgent_tot     = outlet.urgent( @stock_tot )
+   %>
+   <% end %>
+   <tr>
+      <th><%= I18n.t('monthly.total') %> <%= outlet.date.year  %> </th>
+      <th><%= number_to_currency(@retail_tot, :unit => "&euro;", :format => "%n %u")  %></th>
+      <th><%= number_to_currency(@dealer_net_tot, :unit => "&euro;", :format => "%n %u")  %></th>
+      <th><%= number_to_currency(@stock_purc_tot, :unit => "&euro;", :format => "%n %u")  %></th>
+      <th><%= number_to_percentage(@stock_tot, :precision => 2)  %></th>
+      <th><%= number_to_percentage(@urgent_tot, :precision => 2)  %></th>
+   </tr>
+</table><br /><br />
+
+
+<% outlet = @outlet %>
+<% @monthly =   outlet.get_monthly_to_follow(outlet.date)   %>
+<table>
+   <tr>
+      <th><%= I18n.t('monthly.month') %></th>
+      <th><%= I18n.t('monthly.retail_to') %></th>
+      <th><%= I18n.t('monthly.d_n_to') %></th>
+      <th><%= I18n.t('monthly.s_purchase') %></th>
+      <th><%= I18n.t('monthly.stock') %></th>
+      <th><%= I18n.t('monthly.urgent') %></th>
+   </tr>
+   <%
+   @retail_tot  = 0
+   @dealer_net_tot  = 0
+   @stock_purc_tot = 0
+   %>
+   <% @monthly.each do |obj| %>
+      <%
+      @month      = obj.month
+      @retail     = obj.retail_to
+      @dealer_net = obj.dealer_net_to
+      @stock_purc = outlet.stock_purchase(obj)
+      @stock      = outlet.stock(@stock_purc, @dealer_net )
+      @urgent     = outlet.urgent( @stock )
+   %>
+      <tr class="<%= cycle('', 'bg') %>">
+         <td><%= @month %></td>
+         <td><%= number_to_currency(@retail, :unit => "&euro;", :format => "%n %u")  %></td>
+         <td><%= number_to_currency(@dealer_net, :unit => "&euro;", :format => "%n %u")  %></td>
+         <td><%= number_to_currency(@stock_purc, :unit => "&euro;", :format => "%n %u")  %></td>
+         <td><%= number_to_percentage(@stock, :precision => 2)  %></td>
+         <td><%= number_to_percentage(@urgent, :precision => 2) %></td>
+      </tr>
+      <%
+      @retail_tot      =    @retail_tot + @retail.to_i
+      @dealer_net_tot  =    @dealer_net_tot + @dealer_net.to_i
+      @stock_purc_tot  =    @stock_purc_tot + @stock_purc.to_i
+      @stock_tot      = outlet.stock(@stock_purc_tot, @dealer_net_tot )
+      @urgent_tot     = outlet.urgent( @stock_tot )
+    %>
+   <% end %>
+   <tr>
+      <th><%= I18n.t('monthly.total') %> <%= outlet.date.year  %> </th>
+      <th><%= number_to_currency(@retail_tot, :unit => "&euro;", :format => "%n %u")  %></th>
+      <th><%= number_to_currency(@dealer_net_tot, :unit => "&euro;", :format => "%n %u")  %></th>
+      <th><%= number_to_currency(@stock_purc_tot, :unit => "&euro;", :format => "%n %u")  %></th>
+      <th><%= number_to_percentage(@stock_tot, :precision => 2)  %></th>
+      <th><%= number_to_percentage(@urgent_tot, :precision => 2)  %></th>
+   </tr>
+</table>

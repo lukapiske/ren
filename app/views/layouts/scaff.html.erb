@@ -1,0 +1,84 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<meta http-equiv="content-language" content="en" />
+	<meta name="robots" content="noindex,nofollow" />
+        <title><%= h(yield(:title) || "Untitled") %></title>
+        <%= stylesheet_link_tag 'default','univers','mystyle' %>
+        <!--[if lte IE 6]><link rel="stylesheet" media="screen,projection" type="text/css" href="/stylesheets/main-ie6.css" /><![endif]--> <!-- MSIE6 -->
+        <%= javascript_include_tag 'prototype' %>
+         <%= active_scaffold_includes  %>
+        
+</head>
+   <body>
+      <div id="page" class=" pageNav  pageEditoNav  bandeauBlanc ">
+         <div id="header">
+            <div class="overNav">
+               <ul>
+                  <% if logged_in? %>
+                     <li>User: <%=h current_user.username  %> <%= link_to "Log out", admin_logout_path %></li>
+                  <% else %>
+                     <li><%= link_to "log in", admin_login_path %></li>
+                  <% end %>
+               </ul>
+
+            </div>
+            <div id="headerContent">
+               <a class="logo" href="#"><%= image_tag("logo.gif") %></a>
+               <div id="titleAnim">
+                  <div class="randomImg">
+                  </div>
+                  <div id="titleNav" class="oneLine">Renault Administration</div><div id="subTitleNav"> <span></span>
+<%# form_tag '' do %>
+<%#= select_tag("locale", options_for_select(LOCALES_AVAILABLE, I18n.locale), { :index => nil, :onchange => 'this.form.submit()'}) %>
+<%# end %>
+                  </div>
+               </div>
+            </div>
+            <%= render :partial => 'layouts/topmenu' %>
+            <div class="breadcrumb">
+               <%#*<ul>%>
+                  <%#*<li class="first"><a href="/">Home</a></li>%>
+                  <%#*<li><a href="#">Lorem ipsum</a></li>%>
+                  <%#*<li class="current">Lorem ipsum</li>%>
+               <%#*</ul>%>
+            </div>
+         </div>
+         <div id="body">
+            <%#*<div class="PageTitleBlock fullsize">%>
+               <%#*<div class="withActionButtons">%>
+                  <%#*<h1 id="pageTitle" class="pageTitle"></h1>%>
+                  <%#*<div class="pageSSTitle"><span></span>%>
+                  <%#*</div>%>
+               <%#*</div>%>
+            <%#*</div>%>
+            <div id="main">
+               <div id="leftColumn">
+                  <div id="navigation">
+                     <%= render :partial => 'layouts/sidemenu' %>
+                  </div>
+               </div>
+               <div id="mainInside">
+                  <%- flash.each do |name, msg| -%>
+                     <%= content_tag :p, msg, :class => "msg #{name}" %>
+                  <%- end -%>
+                  <%- if show_title? -%>
+                     <b><%=h yield(:title) %></b>
+                  <%- end -%>
+                  <%= yield %>
+               </div>
+            </div>
+            <div id="footer">
+
+               <ul class="left">
+                  <li class="last">
+                     
+                  </li>
+               </ul>
+
+
+            </div>
+         </div>
+      </div>
+
+   </body></html>

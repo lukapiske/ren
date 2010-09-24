@@ -1,0 +1,15 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  bir: 1
+  name: MyString
+  target_q3_oe: 1
+  target_q3_am: 1
+  date: 2010-08-18
+
+two:
+  bir: 1
+  name: MyString
+  target_q3_oe: 1
+  target_q3_am: 1
+  date: 2010-08-18

@@ -1,0 +1,57 @@
+<h2>Wholesales TO </h2>
+
+
+
+<% @outlets.each do |outlet| %>
+  <table class="mytable">
+    <tr>
+      <th>Dealer num</th>
+      <th>Country</th>
+      <th>Zone</th>
+      <th>Dealer ship name</th>
+      <th>Outlet name</th>
+      <th>Contract partner</th>
+      <th>Main delivery</th>
+      <th>Urgent track</th>
+     
+    </tr>
+
+    <tr class="<%= cycle('', 'bg') %>">
+      <td><%=h outlet.dealer_num %></td>
+      <td><%=h outlet.country %></td>
+      <td><%=h outlet.zone %></td>
+      <td><%=h outlet.dealer_ship_name %></td>
+      <td><%=h outlet.outlet_name %></td>
+      <td><%=h outlet.contract_partner %></td>
+      <td><%=h outlet.main_delivery %></td>
+      <td><%=h outlet.urgent_track %></td>
+     
+    </tr>
+    <tr>
+      <td colspan="15">
+        <%= render :partial => 'invoices', :object => outlet %>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="15">
+        <%= render :partial => 'bonus', :object => outlet %>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="15">
+        <%= render :partial => 'csales', :object => outlet %>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="15">
+        <%= render :partial => 'carpark', :object => outlet %>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="15">
+        <%= render :partial => 'a3report', :object => outlet %>
+      </td>
+    </tr>
+  </table>
+<% end %>
+

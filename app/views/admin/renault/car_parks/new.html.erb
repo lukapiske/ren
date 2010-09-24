@@ -1,0 +1,28 @@
+
+<h2>Car park</h2>
+
+<fieldset>
+  <legend>Car park file</legend>
+  <% form_for( [@car_park ] , :html => { :multipart => true }) do |f| %>
+    <table class="nostyle">
+      <tr>
+        <td>Date</td>
+        <td><%= date_select('admin_renault_car_park', 'datum', :order => [:month, :day, :year])%></td>
+      </tr>
+
+      <tr>
+        <td> <%= f.label :excelfiles, "Excel" %></td>
+        <td><%= f.file_field :excelfiles %></td>
+      </tr>
+      <tr>
+        <td><%= f.submit 'Upload' %></td>
+      </tr>
+    </table>
+  <% end %>
+</fieldset>
+
+<div id="aside" class="box">
+  <p id="btn-create" class="box">
+    <%= link_to '<span>Back</span>', admin_renault_car_parks_path %>
+  </p>
+</div>

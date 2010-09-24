@@ -1,0 +1,46 @@
+<h2>Bonus targets files</h2>
+
+
+
+
+<table class="mytable">
+  <tr>
+    <th>ID</th>
+    <th>Name</th>
+    <th>Size</th>
+    <th>Type</th>
+    <th>Report for</th>
+    <th>Date created</th>
+    <th>Actions</th>
+  </tr>
+
+  <% @bonus.each do |bonus| %>
+    <tr class="<%= cycle('', 'bg') %>">
+      <td><%=h bonus.id %></td>
+      <td><%=h bonus.excelfiles_file_name %></td>
+      <td><%=h bonus.excelfiles_file_size %></td>
+      <td><%=h bonus.excelfiles_content_type %></td>
+      <td><%= bonus.date %></td>
+      <td> <%=h bonus.created_at.strftime('%d %B %Y') %></td>
+      <% if permitted_to? :show %>
+      <td> <%= link_to 'Data', :controller => 'admin/renault/scaffold/bonus', :action => 'index', :object => bonus %>
+      <% end  %>
+      <% if permitted_to? :destroy %>
+        <%= link_to 'Destroy', [ bonus ], :confirm => 'Are you sure?', :method => :delete %></td>
+      <% end  %>
+    </tr>
+  <% end %>
+</table>
+
+<br />
+<% if permitted_to? :create %>
+  <div id="aside" class="box">
+    <p id="btn-create" class="box">
+      <%= link_to '<span>New bonus target file</span>', new_admin_renault_bonus_target_path %>
+    </p>
+  </div>
+
+<% end %>
+<br />
+<%= will_paginate @bonus %>
+

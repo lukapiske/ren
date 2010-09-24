@@ -1,0 +1,175 @@
+<% outlet = @outlet %>
+<table>
+   <tr>
+      <th></th>
+      <th><%= I18n.t('kpi.contract') %></th>
+      <th><%= I18n.t('kpi.country') %></th>
+      <th><%= I18n.t('kpi.contract_vs_country') %></th>
+      <th><%= I18n.t('kpi.contract_vs_last') %></th>
+   </tr>
+   <tr>
+      <td><b><%= I18n.t('kpi.b_achievement') %></b></td>
+      <td><%= number_to_currency(outlet.bonus_amount(@bonus5, @quarterTurnover5)  , :unit => "&euro;", :format => "%n %u")  %></td>
+      <td></td>
+      <td></td>
+      <td></td>
+   </tr>
+
+   <% @cmp  = outlet.dealer_cmp %>
+   <% @cmpc = outlet.country_cmp(outlet.country_id) %>
+   <% @cmply = @ly_outlet.dealer_cmp %>
+
+   <tr>
+      <td><b><%= I18n.t('kpi.cmp') %></b></td>
+      <td><%=h number_with_precision(@cmp , :precision => 2) %></td>
+      <td><%=h number_with_precision(@cmpc , :precision => 2) %></td>
+      <td><%=h number_with_precision(outlet.cvc( @cmp, @cmpc ), :precision => 2)  %></td>
+      <td><%=h number_with_precision(outlet.cvcly( @cmp , @cmply), :precision => 2)  %></td>
+   </tr>
+   <%
+   @t = outlet.dealer_target_achievements
+   @tc = outlet.country_target_achievements(outlet.country_id)
+   @tly = @ly_outlet.dealer_target_achievements
+%>
+   <tr>
+      <td><%= I18n.t('kpi.t_achievement') %></td>
+      <td><%= number_to_percentage(@t, :precision => 2) %></td>
+      <td><%= number_to_percentage(@tc, :precision => 2)%></td>
+      <td><%= number_to_percentage(outlet.cvc(@t,  @tc), :precision => 2)%></td>
+      <td><%=h number_with_precision(outlet.cvcly( @t, @tly ), :precision => 2)  %></td>
+   </tr>
+   <%
+   @a  = outlet.dealer_axs_to_new_car
+   @ac = outlet.country_axs_to_new_car(outlet.country_id)
+   @aly  = @ly_outlet.dealer_axs_to_new_car
+%>
+   <tr>
+      <td><%= I18n.t('kpi.axs_to') %></td>
+      <td><%= number_with_precision(@a , :precision => 2) %></td>
+      <td><%= number_with_precision(@ac , :precision => 2) %></td>
+      <td><%= number_with_precision(outlet.cvc(@a,  @ac), :precision => 2) %></td>
+      <td><%=h number_with_precision(outlet.cvcly( @a, @aly ), :precision => 2)  %></td>
+   </tr>
+   <%
+   @cb = outlet.dealer_cmp_body
+   @cbc = outlet.country_cmp_body(outlet.country_id)
+   @cbly = @ly_outlet.dealer_cmp_body
+%>
+   <tr>
+      <td><%= I18n.t('kpi.cmp_body') %></td>
+      <td><%= number_with_precision(@cb, :precision => 2)  %></td>
+      <td><%= number_with_precision(@cbc, :precision => 2)  %></td>
+      <td><%= number_with_precision(outlet.cvc(@cb, @cbc), :precision => 2)  %></td>
+      <td><%=h number_with_precision(outlet.cvcly( @cb, @cbly ), :precision => 2)  %></td>
+   </tr>
+   <%
+   @ces  = outlet.dealer_cmp_es
+   @cesc = outlet.country_cmp_es(outlet.country_id)
+   @cesly  = @ly_outlet.dealer_cmp_es
+
+%>
+   <tr>
+      <td><%= I18n.t('kpi.cmp_es') %></td>
+      <td><%=  number_with_precision(@ces, :precision => 2)  %></td>
+      <td><%=  number_with_precision(@cesc, :precision => 2)  %></td>
+      <td><%=  number_with_precision(outlet.cvc(@ces, @cesc), :precision => 2)  %></td>
+      <td><%=h number_with_precision(outlet.cvcly( @ces, @cesly ), :precision => 2)  %></td>
+   </tr>
+   <%
+   @cu  = outlet.dealer_cmp_eu
+   @cuc = outlet.country_cmp_eu(outlet.country_id)
+   @culy  = @ly_outlet.dealer_cmp_eu
+%>
+   <tr>
+      <td><%= I18n.t('kpi.cmp_eu') %></td>
+      <td><%= number_with_precision(@cu, :precision => 2) %></td>
+      <td><%= number_with_precision(@cuc, :precision => 2) %></td>
+      <td><%=  number_with_precision(outlet.cvc(@cu, @cuc), :precision => 2)  %></td>
+      <td><%=h number_with_precision(outlet.cvcly( @cu, @culy ), :precision => 2)  %></td>
+   </tr>
+   <%
+   @tfa  = outlet.dealer_tfa
+   @tfac = outlet.country_tfa(outlet.country_id)
+   @tfaly  = @ly_outlet.dealer_tfa
+%>
+   <tr>
+      <td><%= I18n.t('kpi.tfa') %> </td>
+      <td><%= number_with_precision(@tfa, :precision => 2) %></td>
+      <td><%= number_with_precision(@tfac, :precision => 2) %></td>
+      <td><%=  number_with_precision(outlet.cvc(@tfa, @tfac), :precision => 2)  %></td>
+      <td><%=h number_with_precision(outlet.cvcly( @tfa, @tfaly ), :precision => 2)  %></td>
+   </tr>
+   <%
+   @puo  = outlet.dealer_parts_urgent_orders
+   @puoc = outlet.country_parts_urgent_orders(outlet.country_id)
+   @puoly  = @ly_outlet.dealer_parts_urgent_orders
+%>
+   <tr>
+      <td><%= I18n.t('kpi.p_u_order') %></td>
+      <td><%= number_with_precision(@puo, :precision => 2) %></td>
+      <td><%= number_with_precision(@puoc, :precision => 2) %></td>
+      <td><%=  number_with_precision(outlet.cvc(@puo, @puoc), :precision => 2)  %></td>
+      <td><%=h number_with_precision(outlet.cvcly( @puo, @puoly ), :precision => 2)  %></td>
+   </tr>
+   <%
+   @w = outlet.dealer_windscreen
+   @wc = outlet.country_windscreen(outlet.country_id)
+   @w = @ly_outlet.dealer_windscreen
+
+%>
+   <tr>
+      <td><%=  I18n.t('kpi.windscreans')%></td>
+      <td><%= number_with_precision(@w, :precision => 2 ) %></td>
+      <td><%= number_with_precision(@wc, :precision => 2 ) %></td>
+      <td><%=  number_with_precision(outlet.cvc(@w, @wc), :precision => 2)  %></td>
+      <td><%=h number_with_precision(outlet.cvcly( @w, @wly ), :precision => 2)  %></td>
+   </tr>
+   <%
+   @we  = outlet.dealer_workshop_entries
+   @wec = outlet.country_workshop_entries(outlet.country_id)
+   @wely  = @ly_outlet.dealer_workshop_entries
+
+%>
+   <tr>
+      <td><%=  I18n.t('kpi.w_entries')%></td>
+      <td><%= number_with_precision(@we, :precision => 2) %></td>
+      <td><%= number_with_precision(@wec, :precision => 2) %></td>
+      <td><%=  number_with_precision(outlet.cvc(@we, @wec), :precision => 2)  %></td>
+      <td><%=h number_with_precision(outlet.cvcly( @we, @wely ), :precision => 2)  %></td>
+   </tr>
+   <%
+   @m = outlet.dealer_motrio
+   @mc = outlet.country_motrio(outlet.country_id)
+   @mly = @ly_outlet.dealer_motrio
+%>
+   <tr>
+      <td><%=  I18n.t('kpi.t_motrio')%></td>
+      <td><%= number_to_percentage(@m, :precision => 2) %></td>
+      <td><%= number_to_percentage(@mc, :precision => 2) %></td>
+      <td><%=  number_to_percentage(outlet.cvc(@m, @mc), :precision => 2)  %></td>
+      <td><%=h number_with_precision(outlet.cvcly( @m, @mly ), :precision => 2)  %></td>
+   </tr>
+<%#*<tr>%>
+<%#*<td>Service contract penetration</td>%>
+<%#*<td><%#=  %><!--/td>% -->
+<%#*<td></td>%>
+<%#*<td></td>%>
+<%#*<td></td>%>
+<%#*</tr>%>
+
+   <%
+   @la  = outlet.dealer_local_axs_to_new_car
+   @lac = outlet.country_local_axs_to_new_car(outlet.country_id)
+   @laly  = @ly_outlet.dealer_local_axs_to_new_car
+%>
+
+   <tr>
+      <td><%=  I18n.t('kpi.l_axs_to')%></td>
+      <td><%= number_with_precision(@la, :precision => 2) %></td>
+      <td><%= number_with_precision(@lac, :precision => 2) %></td>
+      <td><%=  number_with_precision(outlet.cvc(@la, @lac), :precision => 2)  %></td>
+      <td><%=h number_with_precision(outlet.cvcly( @la, @laly ), :precision => 2)  %></td>
+   </tr>
+</table>
+
+

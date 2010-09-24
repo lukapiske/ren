@@ -1,0 +1,15 @@
+<li class="labelTop fline">
+   <label>
+      <%= I18n.t('forms.zone') %>  : *
+   </label>
+   <span class="fld input50">
+      <%= collection_select(:admin_user, :zone, @zones, :zone, :zone, {:prompt => "-Select a zone-"}, :class =>"", :id => 'admin_user_zone' ) %>
+   </span>
+</li>
+
+
+
+<%= observe_field "admin_user_zone", :url => { :action =>  :get_dealers,
+   :controller => :users },
+  :update => "select_dealer",
+  :with => 'zone' %>

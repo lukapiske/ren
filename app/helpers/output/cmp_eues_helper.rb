@@ -1,0 +1,2 @@
+module Output::CmpEuesHelper
+end

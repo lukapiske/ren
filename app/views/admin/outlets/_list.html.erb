@@ -1,0 +1,37 @@
+<table class="mytable">
+   <tr>
+      <th>Zone</th>
+      <th>group</th>
+      <th>BIR</th>
+      <th>Dealer ship Name</th>
+      <th>Outlet</th>
+      <th>Place</th>
+      <th>Country</th>
+      <th colspan="2">Actions</th>
+   </tr>
+   <% @outlets.each do |outlet| %>
+   <tr class="<%= cycle('', 'bg') %>">
+     <td><%=h outlet.zone %></td>
+     <td><%=h outlet.dealer_group_id%></td>
+     <td><%=h outlet.dealer_num %></td>
+     <td><%=h outlet.dealer_ship_name %></td>
+     <td><%=h outlet.outlet_name %></td>
+     <td><%=h outlet.place %></td>
+     <td><%=h outlet.country %></td>
+      <!--td><%#= link_to 'Show', outlet %></td -->
+     <td><%= link_to 'Edit', edit_admin_outlet_path(outlet) %></td>
+     <td><%= link_to 'Destroy', outlet, :confirm => 'Are you sure?', :method => :delete %> </td>
+    </tr>
+  <% end %>
+</table>
+<br />
+<div id="aside" class="box">
+   <p id="btn-create" class="box">
+      <%= link_to '<span>New outlet</span>', new_admin_outlet_path %>
+   </p>
+</div>
+
+
+<%#= link_to 'New excel', :controller => 'admin/outlets', :action => 'get_outlets_excel' %>
+
+<%= will_paginate @outlets,  :previous_label => '<<', :next_label => '>>' , :renderer => 'RemoteLinkRenderer',:remote => { :update => '#outlet_list' } %>

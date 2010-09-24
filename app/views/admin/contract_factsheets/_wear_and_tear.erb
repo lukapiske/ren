@@ -1,0 +1,341 @@
+<% outlet = @ly_outlet %>
+<!-- last year -->
+<% @wear = outlet.get_wear_and_tear_ly(1).monthly %>
+<table>
+   <tr class="wear">
+      <td><%= I18n.t('wear.month') %></td>
+      <td></td>
+      <td></td>
+   </tr>
+   <% unless @wear.empty? %>
+      <%
+      @retail_tot  = 0
+      @dealer_net_tot  = 0
+      @yretail_tot = 0
+      @ydealer_net_tot  = 0
+   %>
+      <% @wear.each do |obj| %>
+         <%
+         @month      = obj.month
+         @retail     = obj.retail_to
+         @dealer_net = obj.dealer_net_to
+      %>
+         <tr class="<%= cycle('', 'bg') %>">
+            <td><%= @month %></td>
+            <td><%= number_to_currency(@retail, :unit => "&euro;", :format => "%n %u")  %></td>
+            <td><%= number_to_currency(@dealer_net, :unit => "&euro;", :format => "%n %u")  %></td>
+         </tr>
+         <%
+         @retail_tot      =    @retail_tot + @retail.to_i
+         @dealer_net_tot  =    @dealer_net_tot + @dealer_net.to_i
+
+      %>
+      <% end %>
+      <tr class="quarter_total" >
+         <td><%= I18n.t('wear.q_total') %> </td>
+         <td><%= number_to_currency(@retail_tot, :unit => "&euro;", :format => "%n %u")  %></td>
+         <td><%= number_to_currency(@dealer_net_tot, :unit => "&euro;", :format => "%n %u")  %></td>
+      </tr>
+      <%
+
+      @yretail_tot      = @yretail_tot + @retail_tot
+      @ydealer_net_tot  =  @ydealer_net_tot + @dealer_net_tot
+   %>
+   <% end %>
+   <% @wear = outlet.get_wear_and_tear_ly(2).monthly %>
+   <% unless @wear.empty? %>
+      <%
+      @retail_tot  = 0
+      @dealer_net_tot  = 0
+   %>
+      <% @wear.each do |obj| %>
+         <%
+         @month      = obj.month
+         @retail     = obj.retail_to
+         @dealer_net = obj.dealer_net_to
+
+      %>
+
+         <tr class="<%= cycle('', 'bg') %>">
+            <td><%= @month %></td>
+            <td><%= number_to_currency(@retail, :unit => "&euro;", :format => "%n %u")  %></td>
+            <td><%= number_to_currency(@dealer_net, :unit => "&euro;", :format => "%n %u")  %></td>
+
+         </tr>
+         <%
+         @retail_tot      =    @retail_tot + @retail.to_i
+         @dealer_net_tot  =    @dealer_net_tot + @dealer_net.to_i
+
+      %>
+      <% end %>
+
+      <tr class="quarter_total" >
+         <td><%= I18n.t('wear.q_total') %>   </td>
+         <td><%= number_to_currency(@retail_tot, :unit => "&euro;", :format => "%n %u")  %></td>
+         <td><%= number_to_currency(@dealer_net_tot, :unit => "&euro;", :format => "%n %u")  %></td>
+      </tr>
+      <%
+
+      @yretail_tot     = @yretail_tot.to_i + @retail_tot.to_i
+      @ydealer_net_tot =  @ydealer_net_tot .to_i + @dealer_net_tot.to_i
+
+   %>
+   <% end %>
+   <% @wear = outlet.get_wear_and_tear_ly(3).monthly %>
+   <% unless @wear.empty? %>
+      <%
+      @retail_tot  = 0
+      @dealer_net_tot  = 0
+
+   %>
+      <% @wear.each do |obj| %>
+         <%
+         @month      = obj.month
+         @retail     = obj.retail_to
+         @dealer_net = obj.dealer_net_to
+
+      %>
+
+         <tr class="<%= cycle('', 'bg') %>">
+            <td><%= @month %></td>
+            <td><%= number_to_currency(@retail, :unit => "&euro;", :format => "%n %u")  %></td>
+            <td><%= number_to_currency(@dealer_net, :unit => "&euro;", :format => "%n %u")  %></td>
+         </tr>
+         <%
+         @retail_tot      =    @retail_tot + @retail.to_i
+         @dealer_net_tot  =    @dealer_net_tot + @dealer_net.to_i
+
+      %>
+      <% end %>
+
+      <tr class="quarter_total" >
+         <td><%= I18n.t('wear.q_total') %></td>
+         <td><%= number_to_currency(@retail_tot, :unit => "&euro;", :format => "%n %u")  %></td>
+         <td><%= number_to_currency(@dealer_net_tot, :unit => "&euro;", :format => "%n %u")  %></td>
+      </tr>
+      <%
+
+      @yretail_tot     = @yretail_tot.to_i + @retail_tot.to_i
+      @ydealer_net_tot =  @ydealer_net_tot .to_i + @dealer_net_tot.to_i
+
+   %>
+   <% end %>
+
+   <% @wear = outlet.get_wear_and_tear_ly(4).monthly %>
+   <% unless @wear.empty? %>
+      <%
+
+      @retail_tot  = 0
+      @dealer_net_tot  = 0
+      @yretail_tot = 0
+      @ydealer_net_tot  = 0
+   
+   %>
+      <% @wear.each do |obj| %>
+         <%
+         @month      = obj.month
+         @retail     = obj.retail_to
+         @dealer_net = obj.dealer_net_to
+
+       %>
+         <tr class="<%= cycle('', 'bg') %>">
+            <td><%= @month %></td>
+            <td><%= number_to_currency(@retail, :unit => "&euro;", :format => "%n %u")  %></td>
+            <td><%= number_to_currency(@dealer_net, :unit => "&euro;", :format => "%n %u")  %></td>
+         </tr>
+         <%
+
+         @retail_tot      =    @retail_tot_i + @retail.to_i
+         @dealer_net_tot  =    @dealer_net_tot + @dealer_net.to_i
+
+
+      %>
+      <% end %>
+      <tr class="quarter_total" >
+         <td><%= I18n.t('wear.q_total') %>   </td>
+         <td><%= number_to_currency(@retail_tot, :unit => "&euro;", :format => "%n %u")  %></td>
+         <td><%= number_to_currency(@dealer_net_tot, :unit => "&euro;", :format => "%n %u")  %></td>
+
+      </tr>
+      <%
+
+      @yretail_tot     =  @yretail_tot.to_i + @retail_tot.to_i
+      @ydealer_net_tot =  @ydealer_net_tot .to_i + @dealer_net_tot.to_i
+
+   %>
+   <% end %>
+   <tr class="total">
+      <td><%= I18n.t('wear.total') %> <%= outlet.date.year %></td>
+      <td><%= number_to_currency(@yretail_tot, :unit => "&euro;", :format => "%n %u") %></td>
+      <td><%= number_to_currency(@ydealer_net_tot, :unit => "&euro;", :format => "%n %u") %></td>
+   </tr>
+</table><br />
+
+<% outlet = @outlet %>
+<!-- this year -->
+<% @wear = outlet.get_wear_and_tear_ly(1).monthly %>
+<table>
+   <tr class="wear">
+      <td><%= I18n.t('wear.month') %></td>
+      <td></td>
+      <td></td>
+   </tr>
+   <% unless @wear.empty? %>
+      <%
+      @retail_tot  = 0
+      @dealer_net_tot  = 0
+      @yretail_tot = 0
+      @ydealer_net_tot  = 0
+   %>
+      <% @wear.each do |obj| %>
+         <%
+         @month      = obj.month
+         @retail     = obj.retail_to
+         @dealer_net = obj.dealer_net_to
+      %>
+         <tr class="<%= cycle('', 'bg') %>">
+            <td><%= @month %></td>
+            <td><%= number_to_currency(@retail, :unit => "&euro;", :format => "%n %u")  %></td>
+            <td><%= number_to_currency(@dealer_net, :unit => "&euro;", :format => "%n %u")  %></td>
+         </tr>
+         <%
+         @retail_tot      =    @retail_tot + @retail.to_i
+         @dealer_net_tot  =    @dealer_net_tot + @dealer_net.to_i
+
+      %>
+      <% end %>
+      <tr class="quarter_total" >
+         <td><%= I18n.t('wear.q_total') %> </td>
+         <td><%= number_to_currency(@retail_tot, :unit => "&euro;", :format => "%n %u")  %></td>
+         <td><%= number_to_currency(@dealer_net_tot, :unit => "&euro;", :format => "%n %u")  %></td>
+      </tr>
+      <%
+
+      @yretail_tot      = @yretail_tot + @retail_tot
+      @ydealer_net_tot  =  @ydealer_net_tot + @dealer_net_tot
+   %>
+   <% end %>
+   <% @wear = outlet.get_wear_and_tear_ly(2).monthly %>
+   <% unless @wear.empty? %>
+      <%
+      @retail_tot  = 0
+      @dealer_net_tot  = 0
+   %>
+      <% @wear.each do |obj| %>
+         <%
+         @month      = obj.month
+         @retail     = obj.retail_to
+         @dealer_net = obj.dealer_net_to
+
+      %>
+
+         <tr class="<%= cycle('', 'bg') %>">
+            <td><%= @month %></td>
+            <td><%= number_to_currency(@retail, :unit => "&euro;", :format => "%n %u")  %></td>
+            <td><%= number_to_currency(@dealer_net, :unit => "&euro;", :format => "%n %u")  %></td>
+
+         </tr>
+         <%
+         @retail_tot      =    @retail_tot + @retail.to_i
+         @dealer_net_tot  =    @dealer_net_tot + @dealer_net.to_i
+
+      %>
+      <% end %>
+
+      <tr class="quarter_total" >
+         <td><%= I18n.t('wear.q_total') %>   </td>
+         <td><%= number_to_currency(@retail_tot, :unit => "&euro;", :format => "%n %u")  %></td>
+         <td><%= number_to_currency(@dealer_net_tot, :unit => "&euro;", :format => "%n %u")  %></td>
+      </tr>
+      <%
+
+      @yretail_tot     = @yretail_tot.to_i + @retail_tot.to_i
+      @ydealer_net_tot =  @ydealer_net_tot .to_i + @dealer_net_tot.to_i
+
+   %>
+   <% end %>
+   <% @wear = outlet.get_wear_and_tear_ly(3).monthly %>
+   <% unless @wear.empty? %>
+      <%
+      @retail_tot  = 0
+      @dealer_net_tot  = 0
+
+   %>
+      <% @wear.each do |obj| %>
+         <%
+         @month      = obj.month
+         @retail     = obj.retail_to
+         @dealer_net = obj.dealer_net_to
+
+      %>
+
+         <tr class="<%= cycle('', 'bg') %>">
+            <td><%= @month %></td>
+            <td><%= number_to_currency(@retail, :unit => "&euro;", :format => "%n %u")  %></td>
+            <td><%= number_to_currency(@dealer_net, :unit => "&euro;", :format => "%n %u")  %></td>
+         </tr>
+         <%
+         @retail_tot      =    @retail_tot + @retail.to_i
+         @dealer_net_tot  =    @dealer_net_tot + @dealer_net.to_i
+
+      %>
+      <% end %>
+
+      <tr class="quarter_total" >
+         <td><%= I18n.t('wear.q_total') %></td>
+         <td><%= number_to_currency(@retail_tot, :unit => "&euro;", :format => "%n %u")  %></td>
+         <td><%= number_to_currency(@dealer_net_tot, :unit => "&euro;", :format => "%n %u")  %></td>
+      </tr>
+      <%
+
+      @yretail_tot     = @yretail_tot.to_i + @retail_tot.to_i
+      @ydealer_net_tot =  @ydealer_net_tot .to_i + @dealer_net_tot.to_i
+
+   %>
+   <% end %>
+
+   <% @wear = outlet.get_wear_and_tear_ly(4).monthly %>
+   <% unless @wear.empty? %>
+      <%
+      @retail_tot  = 0
+      @dealer_net_tot  = 0
+   %>
+      <% @wear.each do |obj| %>
+         <%
+         @month      = obj.month
+         @retail     = obj.retail_to
+         @dealer_net = obj.dealer_net_to
+
+      %>
+         <tr class="<%= cycle('', 'bg') %>">
+            <td><%= @month %></td>
+            <td><%= number_to_currency(@retail, :unit => "&euro;", :format => "%n %u")  %></td>
+            <td><%= number_to_currency(@dealer_net, :unit => "&euro;", :format => "%n %u")  %></td>
+         </tr>
+         <%
+
+         @retail_tot      =    @retail_tot_i + @retail.to_i
+         @dealer_net_tot  =    @dealer_net_tot + @dealer_net.to_i
+
+
+      %>
+      <% end %>
+      <tr class="quarter_total" >
+         <td><%= I18n.t('wear.q_total') %>   </td>
+         <td><%= number_to_currency(@retail_tot, :unit => "&euro;", :format => "%n %u")  %></td>
+         <td><%= number_to_currency(@dealer_net_tot, :unit => "&euro;", :format => "%n %u")  %></td>
+
+      </tr>
+      <%
+
+      @yretail_tot     =  @yretail_tot.to_i + @retail_tot.to_i
+      @ydealer_net_tot =  @ydealer_net_tot .to_i + @dealer_net_tot.to_i
+
+   %>
+   <% end %>
+   <tr class="total">
+      <td><%= I18n.t('wear.total') %> <%= outlet.date.year %></td>
+      <td><%= number_to_currency(@yretail_tot, :unit => "&euro;", :format => "%n %u") %></td>
+      <td><%= number_to_currency(@ydealer_net_tot, :unit => "&euro;", :format => "%n %u") %></td>
+   </tr>
+</table><br />

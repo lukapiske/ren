@@ -1,0 +1,28 @@
+
+<% outlet = @outlet  %>
+
+<table class="mytable">
+   <tr>
+      <th><%= I18n.t('excel_output.bir_no') %></th>
+      <th><%= I18n.t('excel_output.dealer_name') %></th>
+      <th><%= I18n.t('excel_output.country') %></th>
+      <th><%= I18n.t('excel_output.zone') %></th>
+      <th><%= I18n.t('excel_output.zone_manager') %></th>
+      <th><%= I18n.t('excel_output.sigmpr') %></th>
+   </tr>
+
+   <tr class="bg">
+      <% manager = 'outlet doesn t have manager'  %>
+      <% man = outlet.zone_manager(outlet.zone, outlet.country_id) %>
+      <% if !man.empty? %>
+         <% manager = "#{man.first.name} #{man.first.surname}"  %>
+      <% end %>
+      <td><%=h outlet.dealer_num %></td>
+      <td><%=h outlet.dealer_ship_name %></td>
+      <td><%=h outlet.country %></td>
+      <td><%=h outlet.zone %></td>
+      <td><%= manager %></td>
+      <td><%=h outlet.main_delivery %></td>
+   </tr>
+</table>
+

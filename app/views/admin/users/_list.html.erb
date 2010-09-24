@@ -1,0 +1,46 @@
+
+
+
+  <table class="mytable">
+  <tr>
+    <th>ID</th>
+    <th>username</th>
+    <th>email</th>
+    <th>Dealer name</th>
+    <th>Role</th>
+    <th>Zone</th>
+    <th>Country</th>
+    <th colspan="2">ACTIONS</th>
+
+
+  </tr>
+
+<% @users.each do |user| %>
+  <tr class="<%= cycle('', 'bg') %>">
+    <td><%=h user.id %></td>
+    <td><%=h user.username %></td>
+    <td><%=h user.email%></td>
+    <td><%=h user.dealer_name %></td>
+    <td><%=h user.role.name %></td>
+    <td><%=h user.zone %></td>
+    <td><%=h user.country.name %></td>
+
+
+
+
+    <td><%= link_to 'Edit', edit_admin_user_path(user) %></td>
+    <td><%= link_to 'Destroy', user, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+
+  <div id="aside" class="box">
+    <p id="btn-create" class="box">
+      <%= link_to '<span>New user</span>', new_admin_user_path %>
+    </p>
+  </div>
+
+<%= will_paginate @users %>

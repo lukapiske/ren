@@ -1,0 +1,43 @@
+<h1>Listing excel</h1>
+
+<table>
+  <tr>
+    <th>ID</th>
+    <th>CODFIL</th>
+    <th>NROCTEDESS</th>
+    <th>CODSEG</th>
+    <th>CODFAM</th>
+    <th>CODFAC</th>
+
+    <th>sumOfPNCTOT</th>
+    <th>sumOfPCLTOT</th>
+    <th>sumOfTEFAC</th>
+
+  </tr>
+
+  <% @excel_data.each do |excel| %>
+ <tr>
+      <td><%=h excel.id %></td>
+      <td><%=h excel.CODFIL %></td>
+      <td><%=h excel.NROCTEDESS %></td>
+      <td><%=h excel.CODSEG  %></td>
+      <td><%=h excel.CODFAM  %></td>
+      <td><%=h excel.CODFAC  %></td>
+      <td><%=h excel.sumOfPNCTOT %></td>
+      <td><%=h excel.sumOfPCLTOT %></td>
+      <td><%=h excel.sumOfTEFAC %></td>
+
+     
+
+
+    </tr>
+  <% end %>
+</table>
+
+
+
+
+<%  # = link_to 'Edit', edit_admin_renault_excel_path(@excel) %> 
+<%= link_to 'Back', admin_renault_invoice_excels_path %>
+
+<%= will_paginate @excel_data %>

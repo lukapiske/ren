@@ -1,0 +1,10 @@
+*~
+*.cache
+*.log
+*.pid
+tmp/**/*
+logs
+config/database.yml
+nbproject
+publib/excel_outputs
+public/assets

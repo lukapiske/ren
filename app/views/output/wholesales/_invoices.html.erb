@@ -1,0 +1,43 @@
+<table>
+  <tr>
+    <th colspan="8">Invoices</th>
+  </tr>
+  <tr>
+    <td>Id</td>
+    <td>CODSEG </td>
+    <td>CODFAM </td>
+    <td>CODFAC </td>
+    <td>sumOfPNCTOT</td>
+    <td>sumOfPCLTOT</td>
+    <td>sumOfTEFAC </td>
+    <td>DATCRE </td>
+  </tr>
+  <% @sum = 0 %>
+  <% @sum1 = 0 %>
+  <% @sum2 = 0 %>
+  <% object.invoices_data.segment('A').facture(16).each do |invoice| %>
+
+    <tr class="<%= cycle('', 'bg')%>" >
+      <td><%=h invoice.id %></td>
+      <td><%=h invoice.CODSEG %></td>
+      <td><%=h invoice.CODFAM %></td>
+      <td><%=h invoice.CODFAC %></td>
+      <td><%=h invoice.sumOfPNCTOT %></td>
+      <td><%=h invoice.sumOfPCLTOT %></td>
+      <td><%=h invoice.sumOfTEFAC %></td>
+      <td><%=h invoice.DATCRE %></td>
+    </tr>
+    <%  @sum = @sum + invoice.sumOfPNCTOT.to_i   %>
+    <%  @sum1 = @sum1 + invoice.sumOfPCLTOT.to_i   %>
+    <%  @sum2 = @sum2 + invoice.sumOfTEFAC.to_i   %>
+  <% end  %>
+
+  <tr>
+    <td colspan="4">Calculated</td>
+    <td><strong><%= @sum %></strong></td>
+    <td><strong><%= @sum1 %></strong></td>
+    <td><strong><%= @sum2 %></strong></td>
+    <td></td>
+  </tr>
+
+</table>

@@ -1,0 +1,27 @@
+<table>
+  <tr>
+    <th colspan="5">Bonus target </th>
+
+  </tr>
+  <tr>
+    <td>Id</td>
+    <td>name</td>
+    <td>target_q3_oe</td>
+    <td>target_q3_am</td>
+    <td>date </td>
+  </tr>
+  <% object.bonus_data.each do |bonus| %>
+
+    <tr class="<%= cycle('', 'bg')%>" >
+      <td><%=h bonus.id %></td>
+      <td><%=h bonus.name %></td>
+      <td><%=h bonus.target_q3_oe %></td>
+      <td><%=h bonus.target_q3_am %></td>
+      <td><%=h bonus.date %></td>
+
+    </tr>
+
+  <% end  %>
+
+
+</table>

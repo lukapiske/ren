@@ -1,0 +1,9 @@
+
+<% if !is_dealer %>
+<%= render :partial => 'select' %>
+<% end  %>
+<div id="ajax-field">
+
+  <%= render :partial => 'list', :object => @outlets %>
+</div>
+

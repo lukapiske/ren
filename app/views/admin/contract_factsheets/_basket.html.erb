@@ -1,0 +1,116 @@
+<% outlet = @outlet %>
+
+<table class="mytable"  >
+   <tr>
+      <th></th>
+      <th colspan="2"><%= I18n.t('basket.o_parts') %></th>
+      <th colspan="2"><%= I18n.t('basket.accessories') %></th>
+      <th colspan="2"><%= I18n.t('basket.total') %></th>
+   </tr>
+   <tr class="bg">
+      <td></td>
+      <td><%= I18n.t('basket.achievement') %></td>
+      <td><%= I18n.t('basket.projection') %></td>
+      <td><%= I18n.t('basket.achievement') %></td>
+      <td><%= I18n.t('basket.projection') %></td>
+      <td><%= I18n.t('basket.achievement') %></td>
+      <td><%= I18n.t('basket.projection') %></td>
+   </tr>
+   <%
+   @uarterTarget1 =  outlet.dealer_target_achievements_x
+   @uarterTarget2 =  outlet.dealer_target_achievements_y
+   @uarterTarget3 =  outlet.total_achievement
+%>
+
+   <tr >
+      <td><%= I18n.t('basket.q_target') %></td>
+      <td colspan="2" align="center" ><%= number_to_currency(@uarterTarget1, :unit => "&euro;", :format => "%n %u")%> </td>
+      <td colspan="2" align="center"><%= number_to_currency(@uarterTarget2, :unit => "&euro;",  :format => "%n %u")%></td>
+      <td colspan="2" align="center"><%= number_to_currency(@uarterTarget3, :unit => "&euro;",  :format => "%n %u")%></td>
+   </tr>
+   <%
+   @quarterTurnover1 = outlet.orginal_parts_quarter_to
+   @quarterTurnover2 = outlet.projection(outlet.orginal_parts_quarter_to)
+   @quarterTurnover3 = outlet.accessories_quarter_to
+   @quarterTurnover4 = outlet.projection(outlet.accessories_quarter_to)
+   @quarterTurnover5 = outlet.total_quarter_to
+   @quarterTurnover6 = outlet.projection(outlet.total_quarter_to)
+
+   #test
+   #@quarterTurnover1 = 245000
+   %>
+   <tr class="bg">
+
+      <td ><%= I18n.t('basket.q_turnover') %></td>
+      <td align="center"><%= number_to_currency(@quarterTurnover1, :unit => "&euro;", :format => "%n %u")  %></td>
+      <td align="center"><%= number_to_currency(@quarterTurnover2, :unit => "&euro;", :format => "%n %u")  %></td>
+      <td align="center"><%= number_to_currency(@quarterTurnover3, :unit => "&euro;", :format => "%n %u")  %></td>
+      <td align="center"><%= number_to_currency(@quarterTurnover4, :unit => "&euro;", :format => "%n %u")  %></td>
+      <td align="center"><%= number_to_currency(@quarterTurnover5, :unit => "&euro;", :format => "%n %u")  %></td>
+      <td align="center"><%= number_to_currency(@quarterTurnover6, :unit => "&euro;", :format => "%n %u")  %></td>
+   </tr>
+   <%
+   @achievement1 = outlet.achievement(@quarterTurnover1 , @uarterTarget1)
+   @achievement2 = outlet.achievement(@quarterTurnover2,  @uarterTarget1)
+   @achievement3 = outlet.achievement(@quarterTurnover3,  @uarterTarget2)
+   @achievement4 = outlet.achievement(@quarterTurnover4,  @uarterTarget2)
+   @achievement5 = outlet.achievement(@quarterTurnover5,  @uarterTarget3)
+   @achievement6 = outlet.achievement(@quarterTurnover6,  @uarterTarget3)
+
+%>
+
+
+   <tr>
+      <td><%= I18n.t('basket.achievement') %></td>
+      <td align="center"><%=h number_to_percentage(@achievement1, :precision => 2) %></td>
+      <td align="center"><%=h number_to_percentage(@achievement2, :precision => 2) %></td>
+      <td align="center"><%=h number_to_percentage(@achievement3, :precision => 2) %></td>
+      <td align="center"><%=h number_to_percentage(@achievement4, :precision => 2) %></td>
+      <td align="center"><%=h number_to_percentage(@achievement5, :precision => 2) %></td>
+      <td align="center"><%=h number_to_percentage(@achievement6, :precision => 2) %> </td>
+   </tr>
+   <%
+
+   @bonus1 = outlet.bonus(outlet.country_id, @quarterTurnover1, @achievement1)
+   @bonus2 = outlet.bonus(outlet.country_id, @quarterTurnover2, @achievement2)
+   @bonus3 = outlet.bonus(outlet.country_id, @quarterTurnover3, @achievement3)
+   @bonus4 = outlet.bonus(outlet.country_id, @quarterTurnover4, @achievement4)
+   @bonus5 = outlet.bonus(outlet.country_id, @quarterTurnover5, @achievement5)
+   @bonus6 = outlet.bonus(outlet.country_id, @quarterTurnover6, @achievement6)
+
+%>
+   <tr class="bg">
+      <td ><%= I18n.t('basket.b_amount') %></td>
+      <td align="center"> <%= number_to_currency(outlet.bonus_amount(@bonus1, @quarterTurnover1)  , :unit => "&euro;", :format => "%n %u")  %></td>
+      <td align="center"> <%= number_to_currency(outlet.bonus_amount(@bonus2, @quarterTurnover2)  , :unit => "&euro;", :format => "%n %u")  %></td>
+      <td align="center"> <%= number_to_currency(outlet.bonus_amount(@bonus3, @quarterTurnover3)  , :unit => "&euro;", :format => "%n %u")  %></td>
+      <td align="center"> <%= number_to_currency(outlet.bonus_amount(@bonus4, @quarterTurnover4)  , :unit => "&euro;", :format => "%n %u")  %></td>
+      <td align="center"> <%= number_to_currency(outlet.bonus_amount(@bonus5, @quarterTurnover5)  , :unit => "&euro;", :format => "%n %u")  %></td>
+      <td align="center"> <%= number_to_currency(outlet.bonus_amount(@bonus6, @quarterTurnover6)  , :unit => "&euro;", :format => "%n %u")  %></td>
+   </tr>
+   <tr>
+      <td ><%= I18n.t('basket.of_bonus') %></td>
+      <td align="center"><%= number_to_percentage(@bonus1  , :precision => 2) %></td>
+      <td align="center"><%= number_to_percentage(@bonus2  , :precision => 2) %></td>
+      <td align="center"><%= number_to_percentage(@bonus3  , :precision => 2) %></td>
+      <td align="center"><%= number_to_percentage(@bonus4  , :precision => 2) %></td>
+      <td align="center"><%= number_to_percentage(@bonus5  , :precision => 2) %></td>
+      <td align="center"><%= number_to_percentage(@bonus6  , :precision => 2) %></td>
+   </tr>
+   <tr class="bg">
+      <td ><%= I18n.t('basket.t_category') %></td>
+      <td align="center"><%= outlet.size(outlet.country_id, @quarterTurnover1)  %></td>
+      <td align="center"><%= outlet.size(outlet.country_id, @quarterTurnover2)  %></td>
+      <td align="center"><%= outlet.size(outlet.country_id, @quarterTurnover3)  %></td>
+      <td align="center"><%= outlet.size(outlet.country_id, @quarterTurnover4)  %></td>
+      <td align="center"><%#= outlet.size(outlet.country_id, @quarterTurnover5)  %></td>
+      <td align="center"><%#= outlet.size(outlet.country_id, @quarterTurnover6)  %></td>
+   </tr>
+   <tr>
+      <td ><%= I18n.t('basket.n_turnover') %></td>
+      <td colspan="2" align="center"><%= number_to_currency(outlet.next_level(outlet.country_id, @quarterTurnover1)   , :unit => "&euro;", :format => "%n %u")  %></td>
+      <td colspan="2" align="center"><%= number_to_currency(outlet.next_level(outlet.country_id, @quarterTurnover2)   , :unit => "&euro;", :format => "%n %u")  %></td>
+      <td colspan="2" align="center"></td>
+
+   </tr>
+</table>

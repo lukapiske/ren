@@ -1,0 +1,81 @@
+
+<%=
+link_to_function (image_tag("graph.png")) do |page|
+   page.visual_effect :toggle_appear, "show_me_later"
+end
+%><br />
+<div id="show_me_later" style="display:none">
+  <%= render :partial => 'graph'  %>
+</div>
+<table class="mytable" >
+  <tr>
+    <th>Dealer num</th>
+    <th>Country</th>
+    <th>Zone</th>
+    <th>Dealer ship name</th>
+    <% if is_dealer   %>
+      <th>Outlet name</th>
+    <% end %>
+    <% if is_dealer   %>
+      <th>KPI </th>
+      <th>X </th>
+      <th>Y </th>
+    <% end %>
+    <% if !is_dealer   %>
+      <th>KPI </th>
+      <th> X </th>
+      <th> Y </th>
+    <% end  %>
+  </tr>
+
+  <% @outlets.each do |outlet| %>
+    <tr class="<%= cycle('', 'bg') %>">
+      <td><%=h outlet.dealer_num %></td>
+      <td><%=h outlet.country %></td>
+      <td><%=h outlet.zone %></td>
+      <% if is_dealer   %>
+      <td><%= link_to outlet.dealer_ship_name, admin_contract_factsheet_path(outlet) %></td>
+      <% else  %>
+      <td> <%= link_to outlet.dealer_ship_name, admin_contract_factsheet_path(outlet) %></td>
+      <% end %>
+      <% if is_dealer   %>
+        <td><%=h outlet.outlet_name %></td>
+      <% end %>
+      <% if is_dealer   %>
+        <td><%=h number_to_percentage(outlet.dealer_target_achievements, :precision => 2) %></td>
+        <td><%=h outlet.target_achievements_x %></td>
+        <td><%=h outlet.target_achievements_y %></td>
+      <% end %>
+      <% if !is_dealer   %>
+        <td><%=h number_to_percentage(outlet.dealer_target_achievements, :precision => 2) %></td>
+        <td><%= number_to_currency(outlet.dealer_target_achievements_x, :unit => "&euro;", :format => "%n %u")%> </td>
+        <td><%= number_to_currency(outlet.dealer_target_achievements_y, :unit => "&euro;", :format => "%n %u")%> </td>
+      <% end  %>
+    </tr>
+  <%#*<tr>%>
+  <%#*<td colspan="8">%>
+  <%#= render :partial => 'invoices', :object => outlet %>
+  <%#*</td>%>
+  <%#*</tr>%>
+  <%#*<tr>%>
+  <%#*<td colspan="15">%>
+  <%#= render :partial => 'bonus', :object => outlet %>
+  <%#*</td>%>
+  <%#*</tr>%>
+  <%#*<tr>%>
+  <%#*<td colspan="8">%>
+  <%#= render :partial => 'csales', :object => outlet %>
+  <%#*</td>%>
+  <%#*</tr>%>
+  <%#*<tr>%>
+  <%#*<td colspan="15">%>
+  <%#= render :partial => 'carpark', :object => outlet %>
+  <%#*</td>%>
+  <%#*</tr>%>
+  <%#*<tr>%>
+  <%#*<td colspan="15">%>
+  <%#= render :partial => 'a3report', :object => outlet %>
+  <%#*</td>%>
+  <%#*</tr>%>
+  <% end %>
+</table>

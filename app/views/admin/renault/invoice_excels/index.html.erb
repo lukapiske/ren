@@ -1,0 +1,42 @@
+<h2>Invoice files</h2>
+
+<table class="mytable">
+  <tr>
+    <th>ID</th>
+    <th>Name</th>
+    <th>Size</th>
+    <th>Type</th>
+    <th>Date created</th>
+    <th>Actions</th>
+  </tr>
+
+  <% @excel.each do |excel| %>
+    <tr class="<%= cycle('', 'bg') %>">
+      <td><%=h excel.id %></td>
+      <td><%=h excel.excelfiles_file_name %></td>
+      <td><%=h excel.excelfiles_file_size %></td>
+      <td><%=h excel.excelfiles_content_type %></td>
+      <td> <%=h excel.created_at.strftime('%d %B %Y') %></td>
+      <% if permitted_to? :show %>
+        <td> <%= link_to 'Data', :controller => 'admin/renault/scaffold/invoices', :action => 'index', :object => excel %>
+        <% end  %>
+        <% if permitted_to? :destroy %>
+          <%= link_to 'Destroy', [ excel ], :confirm => 'Are you sure?', :method => :delete %></td>
+      <% end  %>
+    </tr>
+  <% end %>
+</table>
+
+<br />
+<% if permitted_to? :create %>
+  <div id="aside" class="box">
+    <p id="btn-create" class="box">
+      <%= link_to '<span>New Invoice file</span>', new_admin_renault_invoice_excel_path %>
+    </p>
+  </div>
+<% end %>
+<br />
+<%= will_paginate @excel %>
+
+
+

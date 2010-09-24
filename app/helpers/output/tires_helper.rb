@@ -1,0 +1,2 @@
+module Output::TiresHelper
+end

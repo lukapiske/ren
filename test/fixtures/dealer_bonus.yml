@@ -1,0 +1,19 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  country_id: 1
+  size_one: 1
+  size_two: 1
+  size_three: 1
+  size_four: 1
+  size_five: 1
+  year: 2010-09-08
+
+two:
+  country_id: 1
+  size_one: 1
+  size_two: 1
+  size_three: 1
+  size_four: 1
+  size_five: 1
+  year: 2010-09-08

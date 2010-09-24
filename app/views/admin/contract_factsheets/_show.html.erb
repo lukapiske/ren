@@ -1,0 +1,26 @@
+   <%= link_to "(PDF)", admin_contract_factsheet_path(@outlet, :format => 'pdf', :diff => @diff)  %><br /><br />
+
+<p>
+   ACCOUNT N0 :
+</p>
+<%= render :partial => 'dealer', :object => @outlet %><br /><br />
+<p>
+   ACHIEVEMENT BASKET :
+</p>
+<%= render :partial => 'basket', :object => @outlet %><br /><br />
+<p>
+   KPI LIST :
+</p>
+<%= render :partial => 'kpi', :object => @outlet  %><br /><br />
+<p>
+   MONTHLY TO FOLLOW :
+</p>
+<%= render :partial => 'monthly', :object => @outlet %><br /><br />
+<p>
+   WEAR AND TEAR :
+</p>
+<%= render :partial => 'wear_and_tear', :object => @outlet %><br /><br />
+<p>
+   ACCESSORIES :
+</p>
+<%= render :partial => 'accessories', :object => @outlet %><br /><br />

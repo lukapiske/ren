@@ -1,0 +1,6 @@
+<% form_for( [ @excel ] , :html => { :multipart => true }) do |f| %>
+   <%= f.label :excelfiles, "Excel" %>
+   <%= f.file_field :excelfiles %>
+   <%= f.submit 'Create' %>
+<% end %>
+

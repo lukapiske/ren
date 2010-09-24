@@ -1,0 +1,2 @@
+module Output::CmpBodiesHelper
+end
